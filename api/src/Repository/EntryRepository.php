@@ -19,16 +19,12 @@ use Doctrine\Common\Collections\Criteria;
  */
 class EntryRepository extends NestedTreeRepository implements ServiceEntityRepositoryInterface
 {
-    private const INSERT_BATCH_SIZE = 50;
-    private $logger;
-
     /**
      * EntryRepository constructor.
      * @param EntityManagerInterface $manager
      */
-    public function __construct(EntityManagerInterface $manager, LoggerInterface $logger)
+    public function __construct(EntityManagerInterface $manager)
     {
-        $this->logger =$logger;
         parent::__construct($manager, $manager->getClassMetadata(Entry::class));
     }
 
@@ -96,17 +92,12 @@ class EntryRepository extends NestedTreeRepository implements ServiceEntityRepos
 
                 $em->persist($entry);
 
-//            if (($i % self::INSERT_BATCH_SIZE) === 0) {
                 $em->flush();
                 $em->clear();
-//            }
 
                 ++$i;
             }
         }
-
-//        $em->flush(); //Persist objects that did not make up an entire batch
-//        $em->clear();
 
         return $i;
     }
