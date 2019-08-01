@@ -24,9 +24,6 @@ final class Version20190801214238 extends AbstractMigration
         $this->addSql('CREATE TABLE entry (global_id INT NOT NULL, tree_root INT DEFAULT NULL, parent_id INT DEFAULT NULL, kod VARCHAR(255) DEFAULT NULL, nomdescr VARCHAR(4096) DEFAULT NULL, idx VARCHAR(255) NOT NULL, razdel VARCHAR(255) NOT NULL, name VARCHAR(1024) NOT NULL, lft INT NOT NULL, lvl INT NOT NULL, rgt INT NOT NULL, PRIMARY KEY(global_id))');
         $this->addSql('CREATE INDEX idx_parent_id ON entry (parent_id)');
         $this->addSql('CREATE INDEX idx_tree_root ON entry (tree_root)');
-        $this->addSql('CREATE INDEX idx_lft ON entry (lft)');
-        $this->addSql('CREATE INDEX idx_rgt ON entry (rgt)');
-        $this->addSql('CREATE INDEX idx_lvl ON entry (lvl)');
         $this->addSql('CREATE INDEX idx_idx ON entry (idx)');
     }
 
