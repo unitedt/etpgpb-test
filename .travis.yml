@@ -16,7 +16,7 @@ install: true
 before_script:
   - sudo service postgresql stop
   # wait for postgresql to shutdown
-  - while sudo lsof -Pi :5432 -sTCP:LISTEN -t; do sleep 1; done
+  - while sudo lsof -Pi :5433 -sTCP:LISTEN -t; do sleep 1; done
 
 script:
   - if jq '.extra.symfony.id != null' api/composer.json -e > /dev/null; then echo 'composer.json must not have symfony.id' 1>&2 && false; fi
@@ -26,8 +26,8 @@ script:
   - sleep 30
   - docker-compose exec -T php composer req sensiolabs/security-checker
   - docker-compose exec -T php bin/console security:check
-  - curl -f http://localhost # Client
-  - curl -f http://localhost:81 # Admin
+  - curl -f http://localhost:81 # Client
+  - curl -f http://localhost:82 # Admin
   - curl -f http://localhost:8080 # API
   - curl -f http://localhost:8081 # Varnish
   - curl -fk https://localhost # Client (HTTP/2)
