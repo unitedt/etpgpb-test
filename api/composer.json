@@ -20,8 +20,10 @@
     },
     "require-dev": {
         "api-platform/schema-generator": "^2.1",
+        "phpunit/phpunit": "^7.5",
         "symfony/maker-bundle": "^1.11",
-        "symfony/profiler-pack": "^1.0"
+        "symfony/profiler-pack": "^1.0",
+        "symfony/test-pack": "^1.0"
     },
     "config": {
         "preferred-install": {
