@@ -2,7 +2,7 @@
 
 namespace App\Action;
 
-use App\Repository\EtlEntryRepository;
+use App\Repository\EntryRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -12,11 +12,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class EntryLoadXml
 {
     /**
-     * @var \App\Repository\EtlEntryRepository
+     * @var \App\Repository\EntryRepository
      */
     private $repository;
 
-    public function __construct(EtlEntryRepository $repository)
+    public function __construct(EntryRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -30,6 +30,14 @@ class EntryLoadXml
      *     path="/entries/load-xml",
      *     defaults={"_api_item_operation_name"="load_xml"}
      * )
+     *
+     * @param Request $request
+     * @return JsonResponse
+     * @throws \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
+     * @throws \Doctrine\Common\Persistence\Mapping\MappingException
+     * @throws \Doctrine\DBAL\DBALException
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function __invoke(Request $request)
     {

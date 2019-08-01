@@ -39,7 +39,22 @@ use Doctrine\ORM\Mapping as ORM;
  *                  },
  *              }
  *          }
- *      }
+ *      },
+ *    "load-xml"={
+ *      "route_name"="entry_load_xml",
+ *      "summary"="Load from XML request and bulk insert entries",
+ *      "swagger_context"={
+ *          "consumes"={"multipart/form-data"},
+ *          "parameters"={
+ *              {
+ *                  "in"="formData",
+ *                  "name"="file",
+ *                  "type"="file",
+ *                  "description"="The file to upload",
+ *              },
+ *          },
+ *      },
+ *    },
  *  },
  *  itemOperations={
  *  },

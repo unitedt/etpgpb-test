@@ -3,7 +3,6 @@
 namespace App\Action;
 
 use ApiPlatform\Core\Exception\ItemNotFoundException;
-use App\Entity\Entry;
 use App\Repository\EntryRepository;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
