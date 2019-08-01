@@ -18,7 +18,8 @@ Install
 `docker-compose up -d`
 
 This launches several Docker containers with PostgreSQL, nginx, php-frm and the rest stuff. Basically you should load 
-`data.xml` file from  (its available in root of git working copy) to API endpoint `/entries/load-xml` 
+`data.xml` file from `https://data.mos.ru/classifier/7710168515-obshcherossiyskiy-klassifikator-produktsii-po-vidam-ekonomicheskoy-deyatelnosti-okpd-2-ok-034-2014-kpes-2008?versionNumber=1&releaseNumber=1&pageNumber=1731&countPerPage=10` 
+(it's available in root of git working copy) to API endpoint `/entries/load-xml` 
 (possibly using browser from webpage) to start work.
 
 To see the container's logs run:
