@@ -3,13 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Entry;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityRepository;
-use Psr\Log\LoggerInterface;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Common\Collections\Criteria;
