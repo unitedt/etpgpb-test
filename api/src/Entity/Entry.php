@@ -63,7 +63,7 @@ use Doctrine\ORM\Mapping as ORM;
  *      "pagination_enabled"=false,
  *  }
  * )
- * @Gedmo\Tree(type="nested")
+ * @Gedmo\Tree(type="materializedPath")
  * @ORM\Entity(repositoryClass="App\Repository\EntryRepository")
  */
 class Entry
@@ -73,6 +73,7 @@ class Entry
      *
      * @ORM\Id
      * @ORM\Column(name="global_id", type="integer")
+     * @Gedmo\TreePathSource
      */
     private $globalId;
 
@@ -120,40 +121,28 @@ class Entry
     private $name = '';
 
     /**
-     * @Gedmo\TreeLeft
-     * @ORM\Column(name="lft", type="integer")
+     * @Gedmo\TreePath
+     * @ORM\Column(name="path", type="string", length=3000, nullable=true)
      */
-    private $lft;
-
-    /**
-     * @Gedmo\TreeLevel
-     * @ORM\Column(name="lvl", type="integer")
-     */
-    private $lvl;
-
-    /**
-     * @Gedmo\TreeRight
-     * @ORM\Column(name="rgt", type="integer")
-     */
-    private $rgt;
-
-    /**
-     * @Gedmo\TreeRoot
-     * @ORM\ManyToOne(targetEntity="Entry")
-     * @ORM\JoinColumn(name="tree_root", referencedColumnName="global_id", onDelete="CASCADE")
-     */
-    private $root;
+    private $path;
 
     /**
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Entry", inversedBy="children")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="global_id", onDelete="CASCADE")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="global_id", onDelete="CASCADE")
+     * })
      */
     private $parent;
 
     /**
+     * @Gedmo\TreeLevel
+     * @ORM\Column(name="lvl", type="integer", nullable=true)
+     */
+    private $lvl;
+
+    /**
      * @ORM\OneToMany(targetEntity="Entry", mappedBy="parent")
-     * @ORM\OrderBy({"lft" = "ASC"})
      */
     private $children;
 
@@ -268,72 +257,18 @@ class Entry
     /**
      * @return mixed
      */
-    public function getLft()
+    public function getPath()
     {
-        return $this->lft;
+        return $this->path;
     }
 
     /**
-     * @param mixed $lft
+     * @param mixed $path
      * @return Entry
      */
-    public function setLft($lft)
+    public function setPath($path)
     {
-        $this->lft = $lft;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLvl()
-    {
-        return $this->lvl;
-    }
-
-    /**
-     * @param mixed $lvl
-     * @return Entry
-     */
-    public function setLvl($lvl)
-    {
-        $this->lvl = $lvl;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRgt()
-    {
-        return $this->rgt;
-    }
-
-    /**
-     * @param mixed $rgt
-     * @return Entry
-     */
-    public function setRgt($rgt)
-    {
-        $this->rgt = $rgt;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRoot()
-    {
-        return $this->root;
-    }
-
-    /**
-     * @param mixed $root
-     * @return Entry
-     */
-    public function setRoot($root)
-    {
-        $this->root = $root;
+        $this->path = $path;
         return $this;
     }
 
@@ -358,6 +293,24 @@ class Entry
     /**
      * @return mixed
      */
+    public function getLvl()
+    {
+        return $this->lvl;
+    }
+
+    /**
+     * @param mixed $lvl
+     * @return Entry
+     */
+    public function setLvl($lvl)
+    {
+        $this->lvl = $lvl;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getChildren()
     {
         return $this->children;
@@ -372,6 +325,5 @@ class Entry
         $this->children = $children;
         return $this;
     }
-
 
 }

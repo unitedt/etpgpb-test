@@ -8,6 +8,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityRepository;
+use Gedmo\Tree\Entity\Repository\MaterializedPathRepository;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
@@ -17,7 +18,7 @@ use Doctrine\Common\Collections\Criteria;
 /**
  * EntryRepository
  */
-class EntryRepository extends NestedTreeRepository implements ServiceEntityRepositoryInterface
+class EntryRepository extends MaterializedPathRepository implements ServiceEntityRepositoryInterface
 {
     /**
      * EntryRepository constructor.
