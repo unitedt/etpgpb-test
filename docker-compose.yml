@@ -48,8 +48,8 @@ services:
       - ./api/docker/varnish/conf:/usr/local/etc/varnish:ro
     tmpfs:
       - /usr/local/var/varnish:exec
-    ports:
-      - "8081:80"
+#    ports:
+#      - "8081:80"
 
   db:
     # In production, you may want to use a managed database service
@@ -76,8 +76,8 @@ services:
       - CORS_ALLOWED_ORIGINS=*
       - PUBLISH_ALLOWED_ORIGINS=http://localhost:1337,https://localhost:1338
       - DEMO=1
-    ports:
-      - "1337:8080"
+#    ports:
+#      - "1337:8080"
 
   client:
     # Use a static website hosting service in production
@@ -92,8 +92,8 @@ services:
     volumes:
       - ./client:/usr/src/client:rw,cached
       - /usr/src/client/node_modules
-    ports:
-      - "81:3000"
+#    ports:
+#      - "81:3000"
 
   admin:
     # Use a static website hosting service in production
@@ -106,8 +106,8 @@ services:
     volumes:
       - ./admin:/usr/src/admin:rw,cached
       - /usr/src/admin/node_modules
-    ports:
-      - "82:3000"
+#    ports:
+#      - "82:3000"
 
   h2-proxy:
     # Don't use this proxy in prod
@@ -118,11 +118,11 @@ services:
       - admin
       - api
       - cache-proxy
-    ports:
-      - "443:443"
-      - "444:444"
-      - "8443:8443"
-      - "8444:8444"
+#    ports:
+#      - "7443:443"
+#      - "7444:444"
+#      - "8443:8443"
+#      - "8444:8444"
 
 volumes:
   db-data: {}
