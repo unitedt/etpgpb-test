@@ -15,6 +15,8 @@ Install
 
 `docker-compose pull`
 
+`docker-compose build`
+
 `docker-compose up -d`
 
 This launches several Docker containers with PostgreSQL, nginx, php-frm and the rest stuff. At first you should load 
